@@ -1,11 +1,13 @@
 ---
-name: 이슈제목
-about: Describe this issue template's purpose here.
+name: refactor_template
+about: refactor
 title: ''
 labels: ''
 assignees: ''
 
 ---
+
+## [Refactor] 이슈 제목 
 
 ## 작업내용
 
