@@ -20,6 +20,6 @@ public class CategoryJpaEntity {
     @Enumerated(EnumType.STRING)
     private CategoryType type;
 
-    @OneToOne(mappedBy = "productId")
+    @OneToOne(mappedBy = "category")
     private ProductJpaEntity product;
 }
