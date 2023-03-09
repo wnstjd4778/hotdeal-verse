@@ -2,8 +2,9 @@ package com.example.hotdealverse.post.adapter.out.persistence;
 
 
 import com.example.hotdealverse.user.adapter.out.persistence.base.BaseTimeEntity;
-import jakarta.persistence.*;
 import lombok.*;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "post")

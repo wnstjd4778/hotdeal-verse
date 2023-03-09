@@ -1,7 +1,8 @@
 package com.example.hotdealverse.post.adapter.out.persistence;
 
-import jakarta.persistence.*;
 import lombok.*;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "product")

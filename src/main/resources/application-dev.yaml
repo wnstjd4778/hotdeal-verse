@@ -38,6 +38,11 @@ spring:
             user-info-uri: https://kapi.kakao.com/v2/user/me
             user-name-attribute: id
 
+  ##### Swagger3 #####
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
 jwt:
   accessToken:
     secret: sssssecret

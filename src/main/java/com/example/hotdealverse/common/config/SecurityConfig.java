@@ -20,7 +20,6 @@ public class SecurityConfig {
     private final CustomOAuth2UserService customOAuth2UserService;
     private final CustomSimpleUrlAuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
 
-
     @Bean
     public CustomOncePerRequestFilter customOncePerRequestFilter() {
         return new CustomOncePerRequestFilter();

@@ -6,7 +6,6 @@ import com.example.hotdealverse.user.adapter.out.persistence.UserJpaEntity;
 import com.example.hotdealverse.user.adapter.out.persistence.UserRepository;
 import com.example.hotdealverse.user.domain.AuthProvider;
 import com.example.hotdealverse.user.domain.RoleType;
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -17,6 +16,7 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Optional;
