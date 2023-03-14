@@ -2,9 +2,17 @@ package com.example.hotdealverse.post.adapter.out.persistence;
 
 import com.example.hotdealverse.user.adapter.out.persistence.UserJpaEntity;
 import com.example.hotdealverse.user.adapter.out.persistence.base.BaseTimeEntity;
+import lombok.*;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "_like")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class LikeJpaEntity extends BaseTimeEntity {
 
     @Id

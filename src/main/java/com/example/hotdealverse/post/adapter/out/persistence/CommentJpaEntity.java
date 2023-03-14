@@ -1,13 +1,19 @@
 package com.example.hotdealverse.post.adapter.out.persistence;
 
-import com.example.hotdealverse.post.domain.Post;
-import com.example.hotdealverse.user.domain.User;
-import lombok.Builder;
+import com.example.hotdealverse.user.adapter.out.persistence.UserJpaEntity;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "comment")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CommentJpaEntity {
 
     @Id
@@ -16,11 +22,11 @@ public class CommentJpaEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private UserJpaEntity user;
 
     @JoinColumn(name = "post_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    private Post post;
+    private PostJpaEntity post;
 
     @Column(nullable = false)
     private String content;
