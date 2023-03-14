@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserMapper {
 
-    User mapToDomainEntity(UserJpaEntity userJpaEntity) {
+    User mapToDomain(UserJpaEntity userJpaEntity) {
         return User.of(
                 userJpaEntity.getId(),
                 userJpaEntity.getName(),

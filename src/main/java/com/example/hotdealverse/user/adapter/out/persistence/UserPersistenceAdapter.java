@@ -1,14 +1,14 @@
 package com.example.hotdealverse.user.adapter.out.persistence;
 
-import com.example.hotdealverse.common.util.PersistenceAdapter;
 import com.example.hotdealverse.user.application.port.out.GetUserPort;
 import com.example.hotdealverse.user.domain.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+@Component
 @RequiredArgsConstructor
-@PersistenceAdapter
 public class UserPersistenceAdapter implements GetUserPort {
 
     private final UserRepository userRepository;
@@ -20,9 +20,9 @@ public class UserPersistenceAdapter implements GetUserPort {
         Optional<UserJpaEntity> optionalUserJpaEntity
                 = this.userRepository.findById(userId);
 
-        if(optionalUserJpaEntity.isPresent()) {
+        if (optionalUserJpaEntity.isPresent()) {
             UserJpaEntity userJpaEntity = optionalUserJpaEntity.get();
-            return userMapper.mapToDomainEntity(userJpaEntity);
+            return userMapper.mapToDomain(userJpaEntity);
         }
 
         return null;

@@ -11,6 +11,8 @@ import java.util.Date;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Post {
 
+    private Long id;
+    
     private String title;
 
     private Date time;

@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Comment {
 
+    private Long id;
+
     private String content;
 
     private Comment parent;

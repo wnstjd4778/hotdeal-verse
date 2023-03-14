@@ -2,14 +2,16 @@ package com.example.hotdealverse.post.adapter.out.persistence;
 
 import com.example.hotdealverse.user.adapter.out.persistence.UserJpaEntity;
 import com.example.hotdealverse.user.adapter.out.persistence.base.BaseTimeEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "_like")
 @Getter
-@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,4 +29,12 @@ public class LikeJpaEntity extends BaseTimeEntity {
     @JoinColumn(name = "post_id", nullable = false)
     private PostJpaEntity post;
 
+    public static LikeJpaEntity createLike(UserJpaEntity user, PostJpaEntity post) {
+        LikeJpaEntity like = LikeJpaEntity.builder()
+                .user(user)
+                .post(post)
+                .build();
+
+        return like;
+    }
 }

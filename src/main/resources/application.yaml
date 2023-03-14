@@ -1,3 +1,6 @@
 spring:
   profiles:
     active: dev
+  error:
+    include-exception: false
+    include-message: always

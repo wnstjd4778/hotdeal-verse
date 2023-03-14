@@ -1,6 +1,7 @@
 package com.example.hotdealverse.common.security.oauth2;
 
-import com.example.hotdealverse.common.exception.OAuth2AuthenticationProcessingException;
+import com.example.hotdealverse.common.exception.CustomException;
+import com.example.hotdealverse.common.exception.ErrorCode;
 import com.example.hotdealverse.user.domain.AuthProvider;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,7 +14,7 @@ public class OAuth2UserInfoFactory {
         if(registrationId.equalsIgnoreCase(AuthProvider.kakao.name())) {
             return new KakaoOAuth2UserInfo(attributes);
         } else {
-            throw new OAuth2AuthenticationProcessingException();
+            throw new CustomException(ErrorCode.OAUTH2_AUTHENTICATION_PROCESSING_FAILED);
         }
     }
 }
