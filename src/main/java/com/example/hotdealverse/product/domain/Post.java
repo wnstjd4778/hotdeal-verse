@@ -1,24 +1,21 @@
-package com.example.hotdealverse.post.domain;
+package com.example.hotdealverse.product.domain;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+
+import java.util.Date;
 
 
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Post {
 
-    private long id;
-
     private String title;
 
-    private String url;
+    private Date time;
 
-    private long price;
+    private String href;
 
     private long viewCnt;
-
-    private long product;
-
 }
