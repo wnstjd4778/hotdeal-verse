@@ -1,4 +1,4 @@
-package com.example.hotdealverse.product.domain;
+package com.example.hotdealverse.post.domain;
 
 import java.util.List;
 

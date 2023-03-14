@@ -1,8 +1,8 @@
-package com.example.hotdealverse.product.adapter.out.persistence;
+package com.example.hotdealverse.post.adapter.out.persistence;
 
-import jakarta.persistence.*;
 import lombok.*;
 
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity

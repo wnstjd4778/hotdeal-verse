@@ -1,10 +1,10 @@
-package com.example.hotdealverse.product.adapter.out.persistence;
+package com.example.hotdealverse.post.adapter.out.persistence;
 
-import com.example.hotdealverse.product.domain.Post;
+import com.example.hotdealverse.post.domain.Post;
 import com.example.hotdealverse.user.domain.User;
-import jakarta.persistence.*;
 import lombok.Builder;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 

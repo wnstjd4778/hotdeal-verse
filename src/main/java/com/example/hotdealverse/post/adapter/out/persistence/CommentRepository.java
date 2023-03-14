@@ -1,4 +1,4 @@
-package com.example.hotdealverse.product.adapter.out.persistence;
+package com.example.hotdealverse.post.adapter.out.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
