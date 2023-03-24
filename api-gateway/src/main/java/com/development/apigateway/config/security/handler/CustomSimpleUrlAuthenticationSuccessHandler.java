@@ -1,0 +1,39 @@
+package com.development.apigateway.config.security.handler;
+
+import com.development.apigateway.config.security.jwt.JwtTokenProvider;
+import com.development.apigateway.user.domain.entity.Token;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@RequiredArgsConstructor
+@Component
+public class CustomSimpleUrlAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+
+    private final JwtTokenProvider jwtTokenProvider;
+
+    @Value("${frontend.redirectUrl}")
+    private String targetUrl;
+
+    @Override
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
+        String targetUrl = determineTargetUrl(request, response, authentication);
+        getRedirectStrategy().sendRedirect(request, response, targetUrl);
+    }
+
+    protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
+
+        Token token = jwtTokenProvider.createToken(authentication.getName());
+        //Todo:리프레쉬토큰 저장
+        return UriComponentsBuilder.fromUriString(targetUrl)
+                .queryParam("token", token.getAccessToken())
+                .build().toUriString();
+    }
+}
