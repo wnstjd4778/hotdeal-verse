@@ -24,7 +24,7 @@ public class LikePersistenceAdapter implements LikePort {
         );
 
         PostJpaEntity post = postRepository.findById(postId).orElseThrow(
-                () -> new CustomException(ErrorCode.Post_NOT_FOUND)
+                () -> new CustomException(ErrorCode.POST_NOT_FOUND)
         );
 
         likeRepository.save(LikeJpaEntity.createLike(user, post));
@@ -38,7 +38,7 @@ public class LikePersistenceAdapter implements LikePort {
         );
 
         PostJpaEntity post = postRepository.findById(postId).orElseThrow(
-                () -> new CustomException(ErrorCode.Post_NOT_FOUND)
+                () -> new CustomException(ErrorCode.POST_NOT_FOUND)
         );
 
         likeRepository.deleteByUserAndPost(user, post);

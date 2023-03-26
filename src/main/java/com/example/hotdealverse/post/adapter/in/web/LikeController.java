@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Api(value = "Like")
-@RestController
+@RestController("/likes")
 @RequiredArgsConstructor
 public class LikeController {
 
     private final LikeUseCase likeUseCase;
 
     @Operation(summary = "게시글 좋아요 등록")
-    @PostMapping("likes/posts/{postId}")
+    @PostMapping("/posts/{postId}")
     public ResponseEntity enrollLike(
             @CurrentUser UserPrincipal userPrincipal,
             @PathVariable("postId") Long postId
@@ -31,7 +31,7 @@ public class LikeController {
     }
 
     @Operation(summary = "게시글 좋아요 취소")
-    @DeleteMapping("likes/posts/{postId}")
+    @DeleteMapping("/posts/{postId}")
     public ResponseEntity unenrollLike(
             @CurrentUser UserPrincipal userPrincipal,
             @PathVariable("postId") Long postId

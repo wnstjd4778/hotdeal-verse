@@ -1,15 +1,13 @@
-package com.example.hotdealverse.post.domain;
+package com.example.hotdealverse.post.dto.res;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-
-@Builder
 @Getter
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Post {
+@Builder
+@AllArgsConstructor
+public class GetPostResDto {
 
     private Long id;
 

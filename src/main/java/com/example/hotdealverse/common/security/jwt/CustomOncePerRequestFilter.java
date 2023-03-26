@@ -22,10 +22,10 @@ public class CustomOncePerRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String jwt = getTokenFromRequest(request);
+        System.out.println(jwt);
         if (StringUtils.hasText(jwt) && !jwtTokenProvider.validateToken(jwt)) {
             String providerKey = jwtTokenProvider.getPrincipal(jwt);
             UsernamePasswordAuthenticationToken authentication = jwtTokenProvider.getAuthenticationByProviderKey(providerKey);
-            System.out.println(authentication);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
         filterChain.doFilter(request, response);

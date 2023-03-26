@@ -1,14 +1,15 @@
 package com.example.hotdealverse.post.adapter.out.persistence;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "post")
 @Getter
-@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,7 +21,7 @@ public class PostJpaEntity {
 
     private String title;
 
-    private Date time;
+    private long price;
 
     private String href;
 
