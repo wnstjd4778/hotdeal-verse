@@ -36,6 +36,7 @@ public class KeywordPersistenceAdapter implements KeywordPort {
         );
 
         boolean isGranted = keywordJpaEntity.isGranted(user);
+        System.out.println("dsadsa");
         if(!isGranted) throw new CustomException(ErrorCode.KEYWORD_NOT_ACCESS);
 
         this.keywordRepository.delete(keywordJpaEntity);

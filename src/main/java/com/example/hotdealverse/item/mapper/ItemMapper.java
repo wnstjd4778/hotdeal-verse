@@ -14,6 +14,7 @@ public class ItemMapper {
                 .replyNum(itemJpaEntity.getReplyNum())
                 .title(itemJpaEntity.getTitle())
                 .href(itemJpaEntity.getHref())
+                .createdAt(itemJpaEntity.getCreatedAt())
                 .build();
     }
 
@@ -24,6 +25,7 @@ public class ItemMapper {
                 .recommendNum(item.getRecommendNum())
                 .replyNum(item.getReplyNum())
                 .title(item.getTitle())
+                .createdAt(item.getCreatedAt())
                 .href(item.getHref())
                 .build();
     }

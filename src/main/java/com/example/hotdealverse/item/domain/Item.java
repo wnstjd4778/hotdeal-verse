@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.Date;
+
 
 @Builder
 @Getter
@@ -22,4 +24,6 @@ public class Item {
     private Long recommendNum;
 
     private String href;
+
+    private Date createdAt;
 }
