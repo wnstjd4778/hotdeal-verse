@@ -32,7 +32,7 @@ public class KeywordPersistenceAdapter implements KeywordPort {
         );
 
         KeywordJpaEntity keywordJpaEntity = this.keywordRepository.findById(keywordId).orElseThrow(
-                () -> new CustomException(ErrorCode.POST_NOT_FOUND)
+                () -> new CustomException(ErrorCode.ITEM_NOT_FOUND)
         );
 
         boolean isGranted = keywordJpaEntity.isGranted(user);
