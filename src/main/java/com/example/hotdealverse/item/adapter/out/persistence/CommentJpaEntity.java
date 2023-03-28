@@ -1,11 +1,12 @@
 package com.example.hotdealverse.item.adapter.out.persistence;
 
 import com.example.hotdealverse.user.adapter.out.persistence.UserJpaEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "comment")
@@ -34,8 +35,7 @@ public class CommentJpaEntity {
     @JoinColumn(name = "parent_id")
     private CommentJpaEntity parent;
 
-    @Builder.Default
-    @OneToMany(mappedBy = "parent", orphanRemoval = true)
-    private List<CommentJpaEntity> children = new ArrayList<>();
-
+    void setParent(CommentJpaEntity commentJpaEntity) {
+        this.parent = commentJpaEntity;
+    }
 }

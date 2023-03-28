@@ -1,4 +1,4 @@
-package com.example.hotdealverse.item.dto.res;
+package com.example.hotdealverse.item.adapter.in.web.dto.res;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

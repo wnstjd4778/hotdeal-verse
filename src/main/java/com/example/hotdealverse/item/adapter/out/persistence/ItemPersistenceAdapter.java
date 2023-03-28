@@ -2,7 +2,7 @@ package com.example.hotdealverse.item.adapter.out.persistence;
 
 import com.example.hotdealverse.item.application.port.out.ItemPort;
 import com.example.hotdealverse.item.domain.Item;
-import com.example.hotdealverse.item.dto.req.GetItemsReqDto;
+import com.example.hotdealverse.item.adapter.in.web.dto.req.GetItemsReqDto;
 import com.example.hotdealverse.item.mapper.ItemMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;

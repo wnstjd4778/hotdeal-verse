@@ -1,8 +1,8 @@
-package com.example.hotdealverse.item.adapter.in.web;
+package com.example.hotdealverse.item.adapter.in.web.controller;
 
 import com.example.hotdealverse.item.application.port.in.ItemUseCase;
-import com.example.hotdealverse.item.dto.req.GetItemsReqDto;
-import com.example.hotdealverse.item.dto.res.GetItemResDto;
+import com.example.hotdealverse.item.adapter.in.web.dto.req.GetItemsReqDto;
+import com.example.hotdealverse.item.adapter.in.web.dto.res.GetItemResDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

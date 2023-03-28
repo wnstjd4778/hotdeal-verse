@@ -17,6 +17,7 @@ public enum ErrorCode {
     KEYWORD_NOT_ACCESS(HttpStatus.FORBIDDEN, "해당 키워드에 접근할 수 없습니다."),
 
     // 404 NOT_FOUND
+    COMMENT_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 댓글을 찾을 수 없습니다."),
     KEYWORD_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 키워드를 찾을 수 없습니다."),
     ITEM_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 아이템을 찾을 수 없습니다."),
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 유저를 찾을 수 없습니다."),

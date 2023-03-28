@@ -2,7 +2,7 @@ package com.example.hotdealverse.item.mapper;
 
 import com.example.hotdealverse.item.adapter.out.persistence.ItemJpaEntity;
 import com.example.hotdealverse.item.domain.Item;
-import com.example.hotdealverse.item.dto.res.GetItemResDto;
+import com.example.hotdealverse.item.adapter.in.web.dto.res.GetItemResDto;
 
 public class ItemMapper {
 

@@ -1,4 +1,4 @@
-package com.example.hotdealverse.item.adapter.in.web;
+package com.example.hotdealverse.item.adapter.in.web.controller;
 
 import com.example.hotdealverse.common.security.CurrentUser;
 import com.example.hotdealverse.common.security.jwt.UserPrincipal;
