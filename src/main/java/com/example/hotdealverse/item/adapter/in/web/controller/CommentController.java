@@ -2,6 +2,7 @@ package com.example.hotdealverse.item.adapter.in.web.controller;
 
 import com.example.hotdealverse.common.security.CurrentUser;
 import com.example.hotdealverse.common.security.jwt.UserPrincipal;
+import com.example.hotdealverse.item.adapter.in.web.dto.req.PatchCommentReqDto;
 import com.example.hotdealverse.item.application.port.in.CommentUseCase;
 import com.example.hotdealverse.item.adapter.in.web.dto.req.CreateCommentReqDto;
 import io.swagger.annotations.Api;
@@ -29,5 +30,15 @@ public class CommentController {
         return ResponseEntity.status(201).build();
     }
 
-    ;
+    @PatchMapping("items/{itemId}/comments/{commentId}")
+    public ResponseEntity patchComment(
+            @PathVariable("commentId") Long commentId,
+            @PathVariable("itemId") Long itemId,
+            @CurrentUser() UserPrincipal userPrincipal,
+            @RequestBody() PatchCommentReqDto patchCommentReqDto
+    ) {
+        this.commentUseCase.patchComment(userPrincipal.getId(), itemId, commentId, patchCommentReqDto);
+
+        return ResponseEntity.status(200).build();
+    }
 }

@@ -1,10 +1,7 @@
 package com.example.hotdealverse.item.adapter.out.persistence;
 
 import com.example.hotdealverse.user.adapter.out.persistence.UserJpaEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 

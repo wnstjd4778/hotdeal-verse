@@ -13,6 +13,7 @@ public enum ErrorCode {
     OAUTH2_AUTHENTICATION_PROCESSING_FAILED(HttpStatus.BAD_REQUEST, "해당 프로바이더로 oauth2에 로그인할 수 없습니다."),
 
     // 403 Forbidden
+    COMMENT_NOT_ACCESS(HttpStatus.FORBIDDEN, "해당 댓글에 접근할 수 없습니다."),
     TOKEN_NOT_INVALID(HttpStatus.FORBIDDEN, "토큰이 유효하지 않습니다."),
     KEYWORD_NOT_ACCESS(HttpStatus.FORBIDDEN, "해당 키워드에 접근할 수 없습니다."),
 

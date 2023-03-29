@@ -2,6 +2,7 @@ package com.example.hotdealverse.item.adapter.out.persistence;
 
 import com.example.hotdealverse.common.exception.CustomException;
 import com.example.hotdealverse.common.exception.ErrorCode;
+import com.example.hotdealverse.item.adapter.in.web.dto.req.PatchCommentReqDto;
 import com.example.hotdealverse.item.application.port.out.CommentPort;
 import com.example.hotdealverse.item.adapter.in.web.dto.req.CreateCommentReqDto;
 import com.example.hotdealverse.user.adapter.out.persistence.UserJpaEntity;
@@ -44,5 +45,28 @@ public class CommentPersistenceAdapter implements CommentPort {
         this.commentRepository.save(
             commentJpaEntity
         );
+    }
+
+    @Override
+    public void patchComment(Long userId, Long itemId, Long commentId, PatchCommentReqDto patchCommentReqDto) {
+        UserJpaEntity userJpaEntity = userRepository.findById(userId).orElseThrow(
+                () -> new CustomException(ErrorCode.USER_NOT_FOUND)
+        );
+
+        ItemJpaEntity itemJpaEntity = itemRepository.findById(itemId).orElseThrow(
+                () -> new CustomException(ErrorCode.ITEM_NOT_FOUND)
+        );
+
+        CommentJpaEntity commentJpaEntity = this.commentRepository.findById(commentId).orElseThrow(
+                () -> new CustomException(ErrorCode.COMMENT_NOT_FOUND)
+        );
+
+        if(userJpaEntity.getId() != commentJpaEntity.getUser().getId()) {
+            throw new CustomException(ErrorCode.COMMENT_NOT_ACCESS);
+        }
+
+        if(patchCommentReqDto.getContent().length() > 0) {
+            this.commentRepository.patchComment(commentJpaEntity.getId(), patchCommentReqDto.getContent());
+        }
     }
 }
