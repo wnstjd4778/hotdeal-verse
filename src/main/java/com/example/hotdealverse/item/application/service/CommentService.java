@@ -22,4 +22,9 @@ public class CommentService implements CommentUseCase {
     public void patchComment(Long userId, Long itemId, Long commentId, PatchCommentReqDto patchCommentReqDto) {
         commentPort.patchComment(userId, itemId, commentId, patchCommentReqDto);
     }
+
+    @Override
+    public void deleteComment(Long userId, Long itemId, Long commentId) {
+        commentPort.deleteComment(userId, itemId, commentId);
+    }
 }

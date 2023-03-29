@@ -41,4 +41,15 @@ public class CommentController {
 
         return ResponseEntity.status(200).build();
     }
+
+    @DeleteMapping("items/{itemId}/comments/{commentId}")
+    public ResponseEntity deleteComment(
+            @PathVariable("commentId") Long commentId,
+            @PathVariable("itemId") Long itemId,
+            @CurrentUser() UserPrincipal userPrincipal
+    ) {
+        this.commentUseCase.deleteComment(userPrincipal.getId(), itemId, commentId);
+
+        return ResponseEntity.status(200).build();
+    }
 }

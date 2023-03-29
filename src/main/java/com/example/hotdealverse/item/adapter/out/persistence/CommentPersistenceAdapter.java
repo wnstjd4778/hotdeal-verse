@@ -69,4 +69,25 @@ public class CommentPersistenceAdapter implements CommentPort {
             this.commentRepository.patchComment(commentJpaEntity.getId(), patchCommentReqDto.getContent());
         }
     }
+
+    @Override
+    public void deleteComment(Long userId, Long itemId, Long commentId) {
+        UserJpaEntity userJpaEntity = userRepository.findById(userId).orElseThrow(
+                () -> new CustomException(ErrorCode.USER_NOT_FOUND)
+        );
+
+        ItemJpaEntity itemJpaEntity = itemRepository.findById(itemId).orElseThrow(
+                () -> new CustomException(ErrorCode.ITEM_NOT_FOUND)
+        );
+
+        CommentJpaEntity commentJpaEntity = this.commentRepository.findById(commentId).orElseThrow(
+                () -> new CustomException(ErrorCode.COMMENT_NOT_FOUND)
+        );
+
+        if(userJpaEntity.getId() != commentJpaEntity.getUser().getId()) {
+            throw new CustomException(ErrorCode.COMMENT_NOT_ACCESS);
+        }
+
+        this.commentRepository.delete(commentJpaEntity);
+    }
 }
