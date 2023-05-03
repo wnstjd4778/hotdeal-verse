@@ -1,4 +1,4 @@
-package com.example.hotdealverse.common.security;
+package com.example.hotdealverse.common.aop;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 

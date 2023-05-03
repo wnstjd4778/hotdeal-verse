@@ -2,7 +2,7 @@ package com.example.hotdealverse.common.config;
 
 import com.example.hotdealverse.common.security.CustomOAuth2UserService;
 import com.example.hotdealverse.common.security.handler.CustomSimpleUrlAuthenticationSuccessHandler;
-import com.example.hotdealverse.common.security.jwt.CustomOncePerRequestFilter;
+import com.example.hotdealverse.common.security.jwt.CustomAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,8 +21,8 @@ public class SecurityConfig {
     private final CustomSimpleUrlAuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
 
     @Bean
-    public CustomOncePerRequestFilter customOncePerRequestFilter() {
-        return new CustomOncePerRequestFilter();
+    public CustomAuthenticationFilter customOncePerRequestFilter() {
+        return new CustomAuthenticationFilter();
     }
 
     @Bean

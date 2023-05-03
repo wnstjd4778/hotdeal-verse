@@ -9,7 +9,8 @@ import org.springframework.http.HttpStatus;
 public enum ErrorCode {
 
     // 400 BAD_REQUEST
-    INVALID_REFRESH_TOKEN(HttpStatus.BAD_REQUEST, "리프레시 토큰이 유효하지 않습니다"),
+    JWT_INVALID(HttpStatus.BAD_REQUEST, "jwt 토큰이 유효하지 않습니다."),
+    REFRESH_TOKEN_INVALID(HttpStatus.BAD_REQUEST, "리프레시 토큰이 유효하지 않습니다"),
     OAUTH2_AUTHENTICATION_PROCESSING_FAILED(HttpStatus.BAD_REQUEST, "해당 프로바이더로 oauth2에 로그인할 수 없습니다."),
 
     // 403 Forbidden
@@ -23,6 +24,8 @@ public enum ErrorCode {
     ITEM_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 아이템을 찾을 수 없습니다."),
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 유저를 찾을 수 없습니다."),
 
+    // 412 PRECONDITION_FAILED
+    JWT_EXPIRED(HttpStatus.PRECONDITION_FAILED, "엑세스 토큰이 만료되었습니다."),
     ;
 
     private final HttpStatus httpStatus;

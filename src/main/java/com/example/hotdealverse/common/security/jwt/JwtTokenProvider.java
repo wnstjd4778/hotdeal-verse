@@ -1,12 +1,11 @@
 package com.example.hotdealverse.common.security.jwt;
 
+import com.example.hotdealverse.common.exception.CustomException;
+import com.example.hotdealverse.common.exception.ErrorCode;
 import com.example.hotdealverse.user.adapter.out.persistence.UserJpaEntity;
 import com.example.hotdealverse.user.adapter.out.persistence.UserRepository;
 import com.example.hotdealverse.user.domain.Token;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -80,9 +79,9 @@ public class JwtTokenProvider {
                     .setSigningKey(accessTokenSecret)
                     .parseClaimsJws(token);
 
-            boolean isTokenExpire = claims.getBody().getExpiration().before(new Date()); // 만료되면 true를 반환
+            boolean isTokenExpired = claims.getBody().getExpiration().before(new Date()); // 만료되면 true를 반환
 
-            return isTokenExpire;
+            return isTokenExpired;
         } catch (Exception e) {
             return false;
         }
@@ -90,12 +89,17 @@ public class JwtTokenProvider {
 
     // Jwt 토큰에서 회원 이메일 또는 관리자 아이디 추출
     public String getPrincipal(String token) {
-        System.out.println(token);
-        return Jwts.parser()
-                .setSigningKey(accessTokenSecret)
-                .parseClaimsJws(token)
-                .getBody()
-                .getSubject();
+        try {
+            return Jwts.parser()
+                    .setSigningKey(accessTokenSecret)
+                    .parseClaimsJws(token)
+                    .getBody()
+                    .getSubject();
+        } catch (ExpiredJwtException e) {
+            throw new CustomException(ErrorCode.JWT_EXPIRED);
+        } catch (SecurityException | MalformedJwtException | UnsupportedJwtException | IllegalArgumentException e) {
+            throw new CustomException(ErrorCode.JWT_INVALID);
+        }
     }
 
 

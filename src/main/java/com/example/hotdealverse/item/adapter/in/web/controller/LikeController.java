@@ -1,6 +1,7 @@
 package com.example.hotdealverse.item.adapter.in.web.controller;
 
-import com.example.hotdealverse.common.security.CurrentUser;
+import com.example.hotdealverse.common.aop.Authenticated;
+import com.example.hotdealverse.common.aop.CurrentUser;
 import com.example.hotdealverse.common.security.jwt.UserPrincipal;
 import com.example.hotdealverse.item.application.port.in.LikeUseCase;
 import io.swagger.annotations.Api;
@@ -21,6 +22,7 @@ public class LikeController {
     private final LikeUseCase likeUseCase;
 
     @Operation(summary = "게시글 좋아요 등록")
+    @Authenticated
     @PostMapping("/items/{itemId}")
     public ResponseEntity enrollLike(
             @CurrentUser UserPrincipal userPrincipal,
@@ -31,6 +33,7 @@ public class LikeController {
     }
 
     @Operation(summary = "게시글 좋아요 취소")
+    @Authenticated
     @DeleteMapping("/items/{itemId}")
     public ResponseEntity unenrollLike(
             @CurrentUser UserPrincipal userPrincipal,

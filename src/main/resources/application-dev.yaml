@@ -46,7 +46,7 @@ spring:
 jwt:
   accessToken:
     secret: sssssecret
-    expiredMsc: 3600000
+    expiredMsc: 1000000000
   refreshToken:
     expiredMsc: 1209600000
 

@@ -1,6 +1,6 @@
 package com.example.hotdealverse.common.config;
 
-import com.example.hotdealverse.common.security.CurrentUser;
+import com.example.hotdealverse.common.aop.CurrentUser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;

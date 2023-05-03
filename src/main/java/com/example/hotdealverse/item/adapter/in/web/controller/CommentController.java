@@ -1,6 +1,7 @@
 package com.example.hotdealverse.item.adapter.in.web.controller;
 
-import com.example.hotdealverse.common.security.CurrentUser;
+import com.example.hotdealverse.common.aop.Authenticated;
+import com.example.hotdealverse.common.aop.CurrentUser;
 import com.example.hotdealverse.common.security.jwt.UserPrincipal;
 import com.example.hotdealverse.item.adapter.in.web.dto.req.PatchCommentReqDto;
 import com.example.hotdealverse.item.application.port.in.CommentUseCase;
@@ -19,6 +20,7 @@ public class CommentController {
 
     private final CommentUseCase commentUseCase;
 
+    @Authenticated
     @PostMapping("items/{itemId}/comments")
     public ResponseEntity createComment(
             @PathVariable("itemId") Long itemId,
@@ -30,6 +32,7 @@ public class CommentController {
         return ResponseEntity.status(201).build();
     }
 
+    @Authenticated
     @PatchMapping("items/{itemId}/comments/{commentId}")
     public ResponseEntity patchComment(
             @PathVariable("commentId") Long commentId,
@@ -42,6 +45,7 @@ public class CommentController {
         return ResponseEntity.status(200).build();
     }
 
+    @Authenticated
     @DeleteMapping("items/{itemId}/comments/{commentId}")
     public ResponseEntity deleteComment(
             @PathVariable("commentId") Long commentId,

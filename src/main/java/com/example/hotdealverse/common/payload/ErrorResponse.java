@@ -5,12 +5,11 @@ import lombok.Builder;
 import lombok.Getter;
 import org.springframework.http.ResponseEntity;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Builder
 public class ErrorResponse {
-    private final LocalDateTime timestamp = LocalDateTime.now();
+
+    private final boolean success;
     private final int status;
     private final String error;
     private final String code;
@@ -20,6 +19,7 @@ public class ErrorResponse {
         return ResponseEntity
                 .status(errorCode.getHttpStatus())
                 .body(ErrorResponse.builder()
+                        .success(false)
                         .status(errorCode.getHttpStatus().value())
                         .error(errorCode.getHttpStatus().name())
                         .code(errorCode.name())

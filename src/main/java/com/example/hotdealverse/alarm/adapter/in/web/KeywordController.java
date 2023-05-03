@@ -2,7 +2,9 @@ package com.example.hotdealverse.alarm.adapter.in.web;
 
 import com.example.hotdealverse.alarm.application.port.in.KeywordUseCase;
 import com.example.hotdealverse.alarm.dto.req.RegisterKeywordReqDto;
-import com.example.hotdealverse.common.security.CurrentUser;
+import com.example.hotdealverse.common.aop.Authenticated;
+import com.example.hotdealverse.common.aop.CurrentUser;
+import com.example.hotdealverse.common.payload.ApiBaseResponse;
 import com.example.hotdealverse.common.security.jwt.UserPrincipal;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,6 +20,7 @@ public class KeywordController {
     private final KeywordUseCase keywordUseCase;
 
     @Operation(summary = "keyword 등록")
+    @Authenticated
     @PostMapping()
     public ResponseEntity registerKeyword(
             @CurrentUser UserPrincipal userPrincipal,
@@ -28,6 +31,7 @@ public class KeywordController {
     }
 
     @Operation(summary = "keyword 삭제")
+    @Authenticated
     @DeleteMapping("/{keywordId}")
     public ResponseEntity deleteKeyword(
             @CurrentUser UserPrincipal userPrincipal,
