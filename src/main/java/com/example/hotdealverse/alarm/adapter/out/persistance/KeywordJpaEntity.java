@@ -35,6 +35,6 @@ public class KeywordJpaEntity {
     }
 
     boolean isGranted(UserJpaEntity userJpaEntity) {
-        return id == userJpaEntity.getId();
+        return user.getId() == userJpaEntity.getId();
     }
 }

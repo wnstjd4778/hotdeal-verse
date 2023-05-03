@@ -2,6 +2,7 @@ package com.example.hotdealverse.alarm.adapter.in.web;
 
 import com.example.hotdealverse.alarm.application.port.in.KeywordUseCase;
 import com.example.hotdealverse.alarm.dto.req.RegisterKeywordReqDto;
+import com.example.hotdealverse.alarm.dto.res.GetKeywordResDto;
 import com.example.hotdealverse.common.aop.Authenticated;
 import com.example.hotdealverse.common.aop.CurrentUser;
 import com.example.hotdealverse.common.payload.ApiBaseResponse;
@@ -9,8 +10,11 @@ import com.example.hotdealverse.common.security.jwt.UserPrincipal;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Api(value = "keyword")
 @RestController("/keywords")
@@ -41,11 +45,14 @@ public class KeywordController {
         return ResponseEntity.status(200).build();
     }
 
-    // 메일 regex 보기
-//    @Operation(summary = "keyword들 보기")
-//    public ResponseEntity getKeywords(
-//            @CurrentUser UserPrincipal userPrincipal
-//    ) {
-//
-//    }
+    @Operation(summary = "keyword들 보기")
+    @Authenticated
+    @GetMapping
+    public ResponseEntity<ApiBaseResponse> getKeywords(
+            @CurrentUser UserPrincipal userPrincipal
+    ) {
+        List<GetKeywordResDto> getKeywordResDtoList = keywordUseCase.getKeywords(userPrincipal.getId());
+        ApiBaseResponse apiBaseResponse = new ApiBaseResponse(getKeywordResDtoList);
+        return new ResponseEntity<>(apiBaseResponse, HttpStatus.OK);
+    }
 }

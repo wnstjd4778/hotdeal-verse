@@ -12,7 +12,6 @@ import java.util.Optional;
 public class UserPersistenceAdapter implements GetUserPort {
 
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
 
     @Override
     public User getUser(long userId) {
@@ -22,7 +21,7 @@ public class UserPersistenceAdapter implements GetUserPort {
 
         if (optionalUserJpaEntity.isPresent()) {
             UserJpaEntity userJpaEntity = optionalUserJpaEntity.get();
-            return userMapper.mapToDomain(userJpaEntity);
+            return UserMapper.converEntityToUser(userJpaEntity);
         }
 
         return null;
