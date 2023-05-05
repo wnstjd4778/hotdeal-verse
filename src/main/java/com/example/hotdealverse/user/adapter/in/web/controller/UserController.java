@@ -1,10 +1,12 @@
-package com.example.hotdealverse.user.adapter.in.web;
+package com.example.hotdealverse.user.adapter.in.web.controller;
 
 import com.example.hotdealverse.common.aop.Authenticated;
 import com.example.hotdealverse.common.aop.CurrentUser;
 import com.example.hotdealverse.common.payload.ApiBaseResponse;
 import com.example.hotdealverse.common.security.jwt.UserPrincipal;
+import com.example.hotdealverse.user.adapter.in.web.dto.req.PatchEmailReqDto;
 import com.example.hotdealverse.user.application.port.in.GetUserQuery;
+import com.example.hotdealverse.user.application.port.in.UserUseCase;
 import com.example.hotdealverse.user.domain.User;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,7 +14,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @Api(value = "user")
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final GetUserQuery getUserQuery;
+    private final UserUseCase userUseCase;
 
     @Operation(summary = "토큰을 통한 사용자 정보 조회")
     @Authenticated
@@ -33,11 +37,15 @@ public class UserController {
         return new ResponseEntity<>(apiBaseResponse, HttpStatus.OK);
     }
 
-    @PostMapping("/aaaa")
-    public ResponseEntity test(
-
+    @Operation(summary = "이메일 설정")
+    @PatchMapping("user/email")
+    @Authenticated
+    public ResponseEntity patchEmail(
+            @CurrentUser UserPrincipal userPrincipal,
+            @RequestBody() PatchEmailReqDto patchEmailReqDto
     ) {
-        return new ResponseEntity<>("", HttpStatus.OK);
+        this.userUseCase.patchEmail(userPrincipal.getId(), patchEmailReqDto);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }

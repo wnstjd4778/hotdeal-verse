@@ -23,6 +23,8 @@ public class UserJpaEntity extends BaseTimeEntity {
 
     private String name;
 
+    private String email;
+
     @Enumerated(EnumType.STRING)
     private AuthProvider providerType;
 

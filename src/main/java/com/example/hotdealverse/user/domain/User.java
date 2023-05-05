@@ -18,6 +18,8 @@ public class User {
 
     private String name;
 
+    private String email;
+
     @Enumerated(EnumType.STRING)
     private AuthProvider providerType;
 
@@ -27,15 +29,4 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private RoleType role;
-
-    public static User of(long id, String name, AuthProvider providerType, String providerKey, Date accessDate, RoleType role) {
-        return User.builder()
-                .id(id)
-                .name(name)
-                .providerType(providerType)
-                .providerKey(providerKey)
-                .accessDate(accessDate)
-                .role(role)
-                .build();
-    }
 }

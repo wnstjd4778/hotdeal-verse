@@ -2,14 +2,14 @@ package com.example.hotdealverse.alarm.mapper;
 
 import com.example.hotdealverse.alarm.adapter.out.persistance.KeywordJpaEntity;
 import com.example.hotdealverse.alarm.domain.Keyword;
-import com.example.hotdealverse.user.adapter.out.persistence.UserMapper;
+import com.example.hotdealverse.user.mapper.UserMapper;
 
 public class KeywordMapper {
 
     public static Keyword convertEntityToKeyword(KeywordJpaEntity keywordJpaEntity) {
         return Keyword.builder()
                 .id(keywordJpaEntity.getId())
-                .user(UserMapper.converEntityToUser(keywordJpaEntity.getUser()))
+                .user(UserMapper.convertEntityToUser(keywordJpaEntity.getUser()))
                 .keyword(keywordJpaEntity.getKeyword())
                 .build();
     }
