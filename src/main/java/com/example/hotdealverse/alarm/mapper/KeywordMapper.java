@@ -13,4 +13,12 @@ public class KeywordMapper {
                 .keyword(keywordJpaEntity.getKeyword())
                 .build();
     }
+
+    public static KeywordJpaEntity convertKeywordToEntity(Keyword keyword) {
+        return KeywordJpaEntity.builder()
+                .id(keyword.getId())
+                .user(UserMapper.convertUserToEntity(keyword.getUser()))
+                .keyword(keyword.getKeyword())
+                .build();
+    }
 }

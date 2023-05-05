@@ -23,4 +23,9 @@ public class ItemPersistenceAdapter implements ItemPort {
         List<ItemJpaEntity> itemJpaEntityList = this.itemRepository.findAllByTitleContaining(getItemsReqDto.getKeyword(), pageable).stream().toList();
         return itemJpaEntityList.stream().map(ItemMapper::convertEntityToItem).toList();
     }
+
+    @Override
+    public void sentAlarm() {
+        this.itemRepository.updateAllItemsToSent();
+    }
 }

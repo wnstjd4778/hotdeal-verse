@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface ItemPort {
 
-    public List<Item> getItems(GetItemsReqDto getItemsReqDto);
+    List<Item> getItems(GetItemsReqDto getItemsReqDto);
+
+    void sentAlarm();
 }

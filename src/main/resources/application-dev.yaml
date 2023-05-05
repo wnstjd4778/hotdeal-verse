@@ -43,6 +43,17 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
+
+  #### rabbitmq ####
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+    port: 5672
+    queue: hello
+    exchange: exchange
+    key: key
+
 jwt:
   accessToken:
     secret: sssssecret

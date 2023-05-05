@@ -18,6 +18,18 @@ public class ItemMapper {
                 .build();
     }
 
+    public static ItemJpaEntity convertItemToEntity(Item item) {
+        return ItemJpaEntity.builder()
+                .id(item.getId())
+                .nickname(item.getNickname())
+                .recommendNum(item.getRecommendNum())
+                .replyNum(item.getReplyNum())
+                .title(item.getTitle())
+                .href(item.getHref())
+                .createdAt(item.getCreatedAt())
+                .build();
+    }
+
     public static GetItemResDto convertItemToGetItemResDto(Item item) {
         return GetItemResDto.builder()
                 .id(item.getId())
