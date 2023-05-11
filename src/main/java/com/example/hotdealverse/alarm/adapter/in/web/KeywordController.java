@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Api(value = "keyword")
-@RestController("/keywords")
+@RestController()
 @RequiredArgsConstructor
 public class KeywordController {
 
@@ -25,7 +25,7 @@ public class KeywordController {
 
     @Operation(summary = "keyword 등록")
     @Authenticated
-    @PostMapping()
+    @PostMapping("/keywords")
     public ResponseEntity registerKeyword(
             @CurrentUser UserPrincipal userPrincipal,
             @RequestBody() RegisterKeywordReqDto registerKeywordReqDto
@@ -36,7 +36,7 @@ public class KeywordController {
 
     @Operation(summary = "keyword 삭제")
     @Authenticated
-    @DeleteMapping("/{keywordId}")
+    @DeleteMapping("/keywords/{keywordId}")
     public ResponseEntity deleteKeyword(
             @CurrentUser UserPrincipal userPrincipal,
             @PathVariable("keywordId") Long keywordId
@@ -47,7 +47,7 @@ public class KeywordController {
 
     @Operation(summary = "keyword들 보기")
     @Authenticated
-    @GetMapping
+    @GetMapping("/keywords")
     public ResponseEntity<ApiBaseResponse> getKeywords(
             @CurrentUser UserPrincipal userPrincipal
     ) {
