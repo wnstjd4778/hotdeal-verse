@@ -18,6 +18,7 @@ public class KeywordService implements KeywordUseCase {
 
     @Override
     public void registerKeyword(long userId, RegisterKeywordReqDto registerKeywordReqDto) {
+
         this.keywordPort.registerKeyword(userId, registerKeywordReqDto);
     }
 

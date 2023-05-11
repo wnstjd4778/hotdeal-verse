@@ -12,6 +12,7 @@ public enum ErrorCode {
     JWT_INVALID(HttpStatus.BAD_REQUEST, "jwt 토큰이 유효하지 않습니다."),
     REFRESH_TOKEN_INVALID(HttpStatus.BAD_REQUEST, "리프레시 토큰이 유효하지 않습니다"),
     OAUTH2_AUTHENTICATION_PROCESSING_FAILED(HttpStatus.BAD_REQUEST, "해당 프로바이더로 oauth2에 로그인할 수 없습니다."),
+    EMAIL_HAS_REQUIRED(HttpStatus.BAD_REQUEST, "이메일 정보가 필요합니다."),
 
     // 403 Forbidden
     COMMENT_NOT_ACCESS(HttpStatus.FORBIDDEN, "해당 댓글에 접근할 수 없습니다."),

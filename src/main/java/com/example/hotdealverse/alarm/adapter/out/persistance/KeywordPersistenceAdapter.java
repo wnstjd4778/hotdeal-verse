@@ -29,6 +29,9 @@ public class KeywordPersistenceAdapter implements KeywordPort {
         UserJpaEntity user = userRepository.findById(userId).orElseThrow(
                 () -> new CustomException(ErrorCode.USER_NOT_FOUND)
         );
+        if(user.getEmail() == null) {
+            throw new CustomException(ErrorCode.EMAIL_HAS_REQUIRED);
+        }
 
         this.keywordRepository.save(KeywordJpaEntity.createKeyword(user, registerKeywordReqDto.getKeyword()));
     }
