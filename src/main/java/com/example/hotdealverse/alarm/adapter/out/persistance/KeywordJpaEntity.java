@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "keyword")
@@ -26,6 +28,9 @@ public class KeywordJpaEntity {
 
     private String keyword;
 
+    @OneToMany(mappedBy = "keyword", cascade = CascadeType.ALL)
+    private List<AlarmJpaEntity> alarmList = new ArrayList<>();
+
     public static KeywordJpaEntity createKeyword(UserJpaEntity userJpaEntity, String keyword) {
         KeywordJpaEntity keywordJpaEntity = KeywordJpaEntity.builder()
                 .user(userJpaEntity)
@@ -36,5 +41,13 @@ public class KeywordJpaEntity {
 
     boolean isGranted(UserJpaEntity userJpaEntity) {
         return user.getId() == userJpaEntity.getId();
+    }
+
+    void addAlarm(AlarmJpaEntity alarmJpaEntity) {
+        System.out.println(alarmJpaEntity.getKeyword());
+        if(alarmList == null) {
+            this.alarmList = new ArrayList<>();
+        }
+        this.alarmList.add(alarmJpaEntity);
     }
 }

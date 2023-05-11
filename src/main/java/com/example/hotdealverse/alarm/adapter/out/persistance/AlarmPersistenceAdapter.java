@@ -28,7 +28,9 @@ public class AlarmPersistenceAdapter implements AlarmPort {
         List<AlarmJpaEntity> alarmJpaEntityList = alarmList.stream().map(
                 alarm -> {
                     this.rabbitTemplate.convertAndSend(exchange, key, alarm);
-                    return AlarmMapper.convertAlarmToEntity(alarm);
+                    AlarmJpaEntity alarmJpaEntity = AlarmMapper.convertAlarmToEntity(alarm);
+                    alarmJpaEntity.getKeyword().addAlarm(alarmJpaEntity);
+                    return alarmJpaEntity;
                 }).toList();
         this.alarmRepository.saveAll(alarmJpaEntityList);
     }
