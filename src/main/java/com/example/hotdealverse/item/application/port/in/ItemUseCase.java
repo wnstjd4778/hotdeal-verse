@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ItemUseCase {
 
-    public List<GetItemResDto> getItems(GetItemsReqDto getItemsReqDto);
+    List<GetItemResDto> getItems(GetItemsReqDto getItemsReqDto);
 
+    Long getTotalItemsCnt(GetItemsReqDto getItemsReqDto);
 }

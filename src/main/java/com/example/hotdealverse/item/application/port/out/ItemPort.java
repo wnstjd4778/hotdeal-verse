@@ -10,4 +10,6 @@ public interface ItemPort {
     List<Item> getItems(GetItemsReqDto getItemsReqDto);
 
     void sentAlarm();
+
+    Long getTotalItemsCnt(GetItemsReqDto getItemsReqDto);
 }

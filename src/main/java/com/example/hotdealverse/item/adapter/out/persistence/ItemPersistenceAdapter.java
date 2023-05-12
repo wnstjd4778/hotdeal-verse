@@ -29,4 +29,10 @@ public class ItemPersistenceAdapter implements ItemPort {
     public void sentAlarm() {
         this.itemRepository.updateAllItemsToSent();
     }
+
+    @Override
+    public Long getTotalItemsCnt(GetItemsReqDto getItemsReqDto) {
+
+        return this.itemRepository.countAllByTitleContaining(getItemsReqDto.getKeyword());
+    }
 }

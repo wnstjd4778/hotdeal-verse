@@ -65,6 +65,7 @@ public class KeywordPersistenceAdapter implements KeywordPort {
     public List<Alarm> findAllKeywordsAndItemsNotSent() {
 
         List<Object[]> keywordsAndItems = this.keywordRepository.findAllKeywordsAndItemsNotSent();
+        System.out.println(keywordsAndItems.size());
         List<Alarm> alarmList = new ArrayList<>();
         for (Object[] keywordAndItem : keywordsAndItems) {
             KeywordJpaEntity keyword = (KeywordJpaEntity) keywordAndItem[0];
@@ -74,7 +75,6 @@ public class KeywordPersistenceAdapter implements KeywordPort {
                     .keyword(KeywordMapper.convertEntityToKeyword(keyword))
                     .item(ItemMapper.convertEntityToItem(item))
                     .build();
-
             alarmList.add(alarm);
         }
 

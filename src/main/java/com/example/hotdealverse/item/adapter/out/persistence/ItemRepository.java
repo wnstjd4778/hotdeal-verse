@@ -10,6 +10,8 @@ public interface ItemRepository extends JpaRepository<ItemJpaEntity, Long> {
 
     Page<ItemJpaEntity> findAllByTitleContaining(String keyword, Pageable pageable);
 
+    Long countAllByTitleContaining(String keyword);
+
     @Modifying
     @Query("UPDATE ItemJpaEntity i SET i.isSend = true")
     void updateAllItemsToSent();

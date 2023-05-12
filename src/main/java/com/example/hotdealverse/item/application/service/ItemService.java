@@ -23,4 +23,9 @@ public class ItemService implements ItemUseCase {
 
         return itemList.stream().map((item) -> ItemMapper.convertItemToGetItemResDto(item)).toList();
     }
+
+    @Override
+    public Long getTotalItemsCnt(GetItemsReqDto getItemsReqDto) {
+        return this.itemPort.getTotalItemsCnt(getItemsReqDto);
+    }
 }

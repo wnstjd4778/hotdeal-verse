@@ -1,6 +1,7 @@
 package com.example.hotdealverse.item.adapter.in.web.controller;
 
 import com.example.hotdealverse.common.payload.ApiBaseResponse;
+import com.example.hotdealverse.common.payload.ApiTotalBaseResponse;
 import com.example.hotdealverse.item.application.port.in.ItemUseCase;
 import com.example.hotdealverse.item.adapter.in.web.dto.req.GetItemsReqDto;
 import com.example.hotdealverse.item.adapter.in.web.dto.res.GetItemResDto;
@@ -23,8 +24,9 @@ public class ItemController {
             GetItemsReqDto getItemsReqDto
     ) {
         List<GetItemResDto> getItemResDtoList = this.itemUseCase.getItems(getItemsReqDto);
-        ApiBaseResponse apiBaseResponse = new ApiBaseResponse(getItemResDtoList);
-        return new ResponseEntity<>(apiBaseResponse, HttpStatus.OK);
+        Long total = this.itemUseCase.getTotalItemsCnt(getItemsReqDto);
+        ApiTotalBaseResponse apiTotalBaseResponse = new ApiTotalBaseResponse(getItemResDtoList, total);
+        return new ResponseEntity<>(apiTotalBaseResponse, HttpStatus.OK);
     }
 
 }
