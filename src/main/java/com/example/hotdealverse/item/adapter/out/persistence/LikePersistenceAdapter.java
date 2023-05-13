@@ -26,8 +26,14 @@ public class LikePersistenceAdapter implements LikePort {
         ItemJpaEntity itemJpaEntity = itemRepository.findById(itemId).orElseThrow(
                 () -> new CustomException(ErrorCode.ITEM_NOT_FOUND)
         );
+        LikeJpaEntity likeJpaEntity = LikeJpaEntity.builder()
+                .user(user)
+                .item(itemJpaEntity)
+                .build();
+        likeRepository.save(likeJpaEntity);
 
-        likeRepository.save(LikeJpaEntity.createLike(user, itemJpaEntity));
+        itemJpaEntity.addLike(likeJpaEntity);
+        this.itemRepository.save(itemJpaEntity);
     }
 
     @Override

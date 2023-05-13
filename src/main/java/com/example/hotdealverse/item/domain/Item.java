@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Builder
@@ -19,9 +20,9 @@ public class Item {
 
     private String nickname;
 
-    private Long replyNum;
+    private List<Comment> commentList;
 
-    private Long recommendNum;
+    private List<Like> likeList;
 
     private String href;
 

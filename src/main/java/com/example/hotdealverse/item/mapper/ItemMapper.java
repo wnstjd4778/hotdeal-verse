@@ -1,8 +1,8 @@
 package com.example.hotdealverse.item.mapper;
 
+import com.example.hotdealverse.item.adapter.in.web.dto.res.GetItemResDto;
 import com.example.hotdealverse.item.adapter.out.persistence.ItemJpaEntity;
 import com.example.hotdealverse.item.domain.Item;
-import com.example.hotdealverse.item.adapter.in.web.dto.res.GetItemResDto;
 
 public class ItemMapper {
 
@@ -10,8 +10,8 @@ public class ItemMapper {
         return Item.builder()
                 .id(itemJpaEntity.getId())
                 .nickname(itemJpaEntity.getNickname())
-                .recommendNum(itemJpaEntity.getRecommendNum())
-                .replyNum(itemJpaEntity.getReplyNum())
+                .commentList(itemJpaEntity.getCommentList().stream().map(commentJpaEntity -> CommentMapper.convertEntityToComment(commentJpaEntity)).toList())
+                .likeList(itemJpaEntity.getLikeList().stream().map(likeJpaEntity -> LikeMapper.convertEntityToLike(likeJpaEntity)).toList())
                 .title(itemJpaEntity.getTitle())
                 .href(itemJpaEntity.getHref())
                 .createdAt(itemJpaEntity.getCreatedAt())
@@ -22,8 +22,8 @@ public class ItemMapper {
         return ItemJpaEntity.builder()
                 .id(item.getId())
                 .nickname(item.getNickname())
-                .recommendNum(item.getRecommendNum())
-                .replyNum(item.getReplyNum())
+                .likeList(item.getLikeList().stream().map(like -> LikeMapper.convertLikeToEntity(like)).toList())
+                .commentList(item.getCommentList().stream().map(comment -> CommentMapper.convertCommentToEntity(comment)).toList())
                 .title(item.getTitle())
                 .href(item.getHref())
                 .createdAt(item.getCreatedAt())
@@ -34,8 +34,8 @@ public class ItemMapper {
         return GetItemResDto.builder()
                 .id(item.getId())
                 .nickname(item.getNickname())
-                .recommendNum(item.getRecommendNum())
-                .replyNum(item.getReplyNum())
+                .recommendNum((long) item.getLikeList().size())
+                .replyNum((long) item.getCommentList().size())
                 .title(item.getTitle())
                 .createdAt(item.getCreatedAt())
                 .href(item.getHref())

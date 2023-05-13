@@ -29,12 +29,4 @@ public class LikeJpaEntity extends BaseTimeEntity {
     @JoinColumn(name = "item_id", nullable = false)
     private ItemJpaEntity item;
 
-    public static LikeJpaEntity createLike(UserJpaEntity user, ItemJpaEntity item) {
-        LikeJpaEntity like = LikeJpaEntity.builder()
-                .user(user)
-                .item(item)
-                .build();
-
-        return like;
-    }
 }

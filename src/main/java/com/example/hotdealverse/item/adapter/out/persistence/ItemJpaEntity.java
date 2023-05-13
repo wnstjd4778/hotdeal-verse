@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "item")
@@ -25,9 +27,11 @@ public class ItemJpaEntity {
 
     private String nickname;
 
-    private Long replyNum;
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    private List<LikeJpaEntity> likeList = new ArrayList<>();
 
-    private Long recommendNum;
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    private List<CommentJpaEntity> commentList = new ArrayList<>();
 
     private String href;
 
@@ -36,4 +40,11 @@ public class ItemJpaEntity {
     @ColumnDefault("false")
     private boolean isSend;
 
+    void addLike(LikeJpaEntity likeJpaEntity) {
+        this.likeList.add(likeJpaEntity);
+    }
+
+    void addComment(CommentJpaEntity commentJpaEntity) {
+        this.commentList.add(commentJpaEntity);
+    }
 }

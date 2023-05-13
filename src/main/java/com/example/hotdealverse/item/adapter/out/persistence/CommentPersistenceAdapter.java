@@ -37,7 +37,6 @@ public class CommentPersistenceAdapter implements CommentPort {
                 .build();
 
         if(createCommentReqDto.getParent() != null) {
-            log.error("xsxs");
             commentJpaEntity.setParent(this.commentRepository.findById(createCommentReqDto.getParent()).orElseThrow(
                     () -> new CustomException(ErrorCode.COMMENT_NOT_FOUND)
             ));
@@ -45,6 +44,9 @@ public class CommentPersistenceAdapter implements CommentPort {
         this.commentRepository.save(
             commentJpaEntity
         );
+
+        itemJpaEntity.addComment(commentJpaEntity);
+        this.itemRepository.save(itemJpaEntity);
     }
 
     @Override
