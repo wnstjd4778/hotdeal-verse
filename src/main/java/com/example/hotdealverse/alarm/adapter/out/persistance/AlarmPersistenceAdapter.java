@@ -20,14 +20,14 @@ public class AlarmPersistenceAdapter implements AlarmPort {
     @Value("${spring.rabbitmq.exchange}")
     private String exchange;
 
-    @Value("${spring.rabbitmq.key}")
-    private String key;
+    @Value("${spring.rabbitmq.list[0].key}")
+    private String key1;
 
     @Override
     public void send(List<Alarm> alarmList) {
         List<AlarmJpaEntity> alarmJpaEntityList = alarmList.stream().map(
                 alarm -> {
-                    this.rabbitTemplate.convertAndSend(exchange, key, alarm);
+                    this.rabbitTemplate.convertAndSend(exchange, key1, alarm);
                     AlarmJpaEntity alarmJpaEntity = AlarmMapper.convertAlarmToEntity(alarm);
                     alarmJpaEntity.getKeyword().addAlarm(alarmJpaEntity);
                     return alarmJpaEntity;

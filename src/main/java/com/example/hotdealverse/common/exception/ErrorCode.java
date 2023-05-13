@@ -24,6 +24,7 @@ public enum ErrorCode {
     KEYWORD_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 키워드를 찾을 수 없습니다."),
     ITEM_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 아이템을 찾을 수 없습니다."),
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 유저를 찾을 수 없습니다."),
+    EMAIL_TOKEN_NOT_FOUND(HttpStatus.NOT_FOUND, "이메일 토큰을 찾을 수 없습니다."),
 
     // 412 PRECONDITION_FAILED
     JWT_EXPIRED(HttpStatus.PRECONDITION_FAILED, "엑세스 토큰이 만료되었습니다."),

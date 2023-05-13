@@ -28,18 +28,42 @@ public class RabbitmqConfig {
     @Value("${spring.rabbitmq.port}")
     private int port;
 
-    @Value("${spring.rabbitmq.queue}")
-    private String queue;
+    @Value("${spring.rabbitmq.list[0].queue}")
+    private String queue1;
+
+
+    @Value("${spring.rabbitmq.list[0].key}")
+    private String key1;
+
+    @Value("${spring.rabbitmq.list[1].queue}")
+    private String queue2;
+
+
+    @Value("${spring.rabbitmq.list[1].key}")
+    private String key2;
 
     @Value("${spring.rabbitmq.exchange}")
     private String exchange;
 
-    @Value("${spring.rabbitmq.key}")
-    private String key;
 
     @Bean
-    Queue queue() {
-        return new Queue(queue, true);
+    Queue queue1() {
+        return new Queue(queue1, true);
+    }
+
+    @Bean
+    Queue queue2() {
+        return new Queue(queue2, true);
+    }
+
+    @Bean
+    Binding binding1(DirectExchange directExchange, Queue queue1) {
+        return BindingBuilder.bind(queue1).to(directExchange).with(key1);
+    }
+
+    @Bean
+    Binding binding2(DirectExchange directExchange, Queue queue2) {
+        return BindingBuilder.bind(queue2).to(directExchange).with(key2);
     }
 
     @Bean
@@ -47,10 +71,6 @@ public class RabbitmqConfig {
         return new DirectExchange(exchange);
     }
 
-    @Bean
-    Binding binding(DirectExchange directExchange, Queue queue) {
-        return BindingBuilder.bind(queue).to(directExchange).with(key);
-    }
 
     @Bean
     RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory, MessageConverter messageConverter) {

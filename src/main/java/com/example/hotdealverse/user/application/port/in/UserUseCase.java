@@ -4,5 +4,7 @@ import com.example.hotdealverse.user.adapter.in.web.dto.req.PatchEmailReqDto;
 
 public interface UserUseCase {
 
-    void patchEmail(Long userId, PatchEmailReqDto patchEmailReqDto);
+    void sendMailToEmail(Long userId, PatchEmailReqDto patchEmailReqDto);
+
+    void verifyAndUpdateEmail(String email, String token);
 }

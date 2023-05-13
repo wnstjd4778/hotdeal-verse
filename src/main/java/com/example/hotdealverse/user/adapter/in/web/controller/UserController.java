@@ -11,12 +11,14 @@ import com.example.hotdealverse.user.domain.User;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.websocket.server.PathParam;
+import java.net.URI;
 
 @Api(value = "user")
 @RestController
@@ -25,6 +27,9 @@ public class UserController {
 
     private final GetUserQuery getUserQuery;
     private final UserUseCase userUseCase;
+
+    @Value("${frontend.email.redirectUrl}")
+    private String redirectUrl;
 
     @Operation(summary = "토큰을 통한 사용자 정보 조회")
     @Authenticated
@@ -44,8 +49,19 @@ public class UserController {
             @CurrentUser UserPrincipal userPrincipal,
             @RequestBody() PatchEmailReqDto patchEmailReqDto
     ) {
-        this.userUseCase.patchEmail(userPrincipal.getId(), patchEmailReqDto);
+        this.userUseCase.sendMailToEmail(userPrincipal.getId(), patchEmailReqDto);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping("user/email/{email}/verify")
+    public ResponseEntity verifyEmail(
+            @PathVariable("email") String email,
+            @PathParam("token") String token
+    ) {
+        this.userUseCase.verifyAndUpdateEmail(email, token);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(URI.create(redirectUrl));
+        return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
     }
 
 }
