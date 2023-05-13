@@ -10,4 +10,6 @@ public interface ItemUseCase {
     List<GetItemResDto> getItems(GetItemsReqDto getItemsReqDto);
 
     Long getTotalItemsCnt(GetItemsReqDto getItemsReqDto);
+
+    GetItemResDto getItem(Long itemId);
 }

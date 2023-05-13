@@ -1,5 +1,7 @@
 package com.example.hotdealverse.item.adapter.out.persistence;
 
+import com.example.hotdealverse.common.exception.CustomException;
+import com.example.hotdealverse.common.exception.ErrorCode;
 import com.example.hotdealverse.item.application.port.out.ItemPort;
 import com.example.hotdealverse.item.domain.Item;
 import com.example.hotdealverse.item.adapter.in.web.dto.req.GetItemsReqDto;
@@ -34,5 +36,14 @@ public class ItemPersistenceAdapter implements ItemPort {
     public Long getTotalItemsCnt(GetItemsReqDto getItemsReqDto) {
 
         return this.itemRepository.countAllByTitleContaining(getItemsReqDto.getKeyword());
+    }
+
+    @Override
+    public Item getItemById(Long itemId) {
+        ItemJpaEntity itemJpaEntity = this.itemRepository.findById(itemId).orElseThrow(
+                () -> new CustomException(ErrorCode.ITEM_NOT_FOUND)
+        );
+
+        return ItemMapper.convertEntityToItem(itemJpaEntity);
     }
 }

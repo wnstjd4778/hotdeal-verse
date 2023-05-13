@@ -28,4 +28,10 @@ public class ItemService implements ItemUseCase {
     public Long getTotalItemsCnt(GetItemsReqDto getItemsReqDto) {
         return this.itemPort.getTotalItemsCnt(getItemsReqDto);
     }
+
+    @Override
+    public GetItemResDto getItem(Long itemId) {
+        Item item = this.itemPort.getItemById(itemId);
+        return ItemMapper.convertItemToGetItemResDto(item);
+    }
 }
