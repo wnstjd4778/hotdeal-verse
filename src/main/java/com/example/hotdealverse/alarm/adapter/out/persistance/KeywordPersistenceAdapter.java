@@ -3,7 +3,7 @@ package com.example.hotdealverse.alarm.adapter.out.persistance;
 import com.example.hotdealverse.alarm.application.port.out.KeywordPort;
 import com.example.hotdealverse.alarm.domain.Alarm;
 import com.example.hotdealverse.alarm.domain.Keyword;
-import com.example.hotdealverse.alarm.dto.req.RegisterKeywordReqDto;
+import com.example.hotdealverse.alarm.adapter.dto.req.RegisterKeywordReqDto;
 import com.example.hotdealverse.alarm.mapper.KeywordMapper;
 import com.example.hotdealverse.common.exception.CustomException;
 import com.example.hotdealverse.common.exception.ErrorCode;

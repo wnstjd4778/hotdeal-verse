@@ -1,6 +1,6 @@
 package com.example.hotdealverse.item.mapper;
 
-import com.example.hotdealverse.item.adapter.in.web.dto.res.GetItemResDto;
+import com.example.hotdealverse.item.adapter.dto.res.GetItemResDto;
 import com.example.hotdealverse.item.adapter.out.persistence.ItemJpaEntity;
 import com.example.hotdealverse.item.domain.Item;
 
@@ -15,6 +15,7 @@ public class ItemMapper {
                 .title(itemJpaEntity.getTitle())
                 .href(itemJpaEntity.getHref())
                 .createdAt(itemJpaEntity.getCreatedAt())
+                .imgName(itemJpaEntity.getImgName())
                 .build();
     }
 
@@ -27,6 +28,7 @@ public class ItemMapper {
                 .title(item.getTitle())
                 .href(item.getHref())
                 .createdAt(item.getCreatedAt())
+                .imgName(item.getImgName())
                 .build();
     }
 
@@ -39,6 +41,7 @@ public class ItemMapper {
                 .title(item.getTitle())
                 .createdAt(item.getCreatedAt())
                 .href(item.getHref())
+                .imgName(item.getImgName())
                 .build();
     }
 }

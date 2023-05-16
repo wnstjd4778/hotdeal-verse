@@ -1,7 +1,7 @@
 package com.example.hotdealverse.item.application.service;
 
-import com.example.hotdealverse.item.adapter.in.web.dto.req.CreateCommentReqDto;
-import com.example.hotdealverse.item.adapter.in.web.dto.req.PatchCommentReqDto;
+import com.example.hotdealverse.item.adapter.dto.req.CreateCommentReqDto;
+import com.example.hotdealverse.item.adapter.dto.req.PatchCommentReqDto;
 import com.example.hotdealverse.item.application.port.in.CommentUseCase;
 import com.example.hotdealverse.item.application.port.out.CommentPort;
 import lombok.RequiredArgsConstructor;

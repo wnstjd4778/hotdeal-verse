@@ -1,7 +1,7 @@
 package com.example.hotdealverse.alarm.application.port.in;
 
-import com.example.hotdealverse.alarm.dto.req.RegisterKeywordReqDto;
-import com.example.hotdealverse.alarm.dto.res.GetKeywordResDto;
+import com.example.hotdealverse.alarm.adapter.dto.req.RegisterKeywordReqDto;
+import com.example.hotdealverse.alarm.adapter.dto.res.GetKeywordResDto;
 
 import java.util.List;
 

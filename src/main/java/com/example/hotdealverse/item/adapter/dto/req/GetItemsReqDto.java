@@ -1,4 +1,4 @@
-package com.example.hotdealverse.item.adapter.in.web.dto.req;
+package com.example.hotdealverse.item.adapter.dto.req;
 
 import lombok.Getter;
 import lombok.Setter;

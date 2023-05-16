@@ -27,4 +27,6 @@ public class Item {
     private String href;
 
     private Date createdAt;
+
+    private String imgName;
 }

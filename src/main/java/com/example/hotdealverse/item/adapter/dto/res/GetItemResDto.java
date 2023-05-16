@@ -1,4 +1,4 @@
-package com.example.hotdealverse.item.adapter.in.web.dto.res;
+package com.example.hotdealverse.item.adapter.dto.res;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,4 +24,6 @@ public class GetItemResDto {
     private String href;
 
     private Date createdAt;
+
+    private String imgName;
 }

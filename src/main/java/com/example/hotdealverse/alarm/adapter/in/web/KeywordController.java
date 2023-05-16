@@ -1,8 +1,8 @@
 package com.example.hotdealverse.alarm.adapter.in.web;
 
 import com.example.hotdealverse.alarm.application.port.in.KeywordUseCase;
-import com.example.hotdealverse.alarm.dto.req.RegisterKeywordReqDto;
-import com.example.hotdealverse.alarm.dto.res.GetKeywordResDto;
+import com.example.hotdealverse.alarm.adapter.dto.req.RegisterKeywordReqDto;
+import com.example.hotdealverse.alarm.adapter.dto.res.GetKeywordResDto;
 import com.example.hotdealverse.common.aop.Authenticated;
 import com.example.hotdealverse.common.aop.CurrentUser;
 import com.example.hotdealverse.common.payload.ApiBaseResponse;

@@ -4,7 +4,7 @@ import com.example.hotdealverse.common.exception.CustomException;
 import com.example.hotdealverse.common.exception.ErrorCode;
 import com.example.hotdealverse.item.application.port.out.ItemPort;
 import com.example.hotdealverse.item.domain.Item;
-import com.example.hotdealverse.item.adapter.in.web.dto.req.GetItemsReqDto;
+import com.example.hotdealverse.item.adapter.dto.req.GetItemsReqDto;
 import com.example.hotdealverse.item.mapper.ItemMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;

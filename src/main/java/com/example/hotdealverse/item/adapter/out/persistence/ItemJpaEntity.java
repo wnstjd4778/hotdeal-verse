@@ -37,6 +37,8 @@ public class ItemJpaEntity {
 
     private Date createdAt;
 
+    private String imgName;
+
     @ColumnDefault("false")
     private boolean isSend;
 

@@ -1,4 +1,4 @@
-package com.example.hotdealverse.alarm.dto.req;
+package com.example.hotdealverse.alarm.adapter.dto.req;
 
 import lombok.Getter;
 
