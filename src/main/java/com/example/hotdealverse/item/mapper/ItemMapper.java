@@ -16,6 +16,7 @@ public class ItemMapper {
                 .href(itemJpaEntity.getHref())
                 .createdAt(itemJpaEntity.getCreatedAt())
                 .imgName(itemJpaEntity.getImgName())
+                .viewCnt(itemJpaEntity.getViewCnt())
                 .build();
     }
 
@@ -29,6 +30,7 @@ public class ItemMapper {
                 .href(item.getHref())
                 .createdAt(item.getCreatedAt())
                 .imgName(item.getImgName())
+                .viewCnt(item.getViewCnt())
                 .build();
     }
 
@@ -42,6 +44,7 @@ public class ItemMapper {
                 .createdAt(item.getCreatedAt())
                 .href(item.getHref())
                 .imgName(item.getImgName())
+                .viewCnt(item.getViewCnt())
                 .build();
     }
 }

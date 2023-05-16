@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -43,7 +44,16 @@ public class ItemPersistenceAdapter implements ItemPort {
         ItemJpaEntity itemJpaEntity = this.itemRepository.findById(itemId).orElseThrow(
                 () -> new CustomException(ErrorCode.ITEM_NOT_FOUND)
         );
+        itemJpaEntity.addViewCnt();
+        this.itemRepository.save(itemJpaEntity);
 
         return ItemMapper.convertEntityToItem(itemJpaEntity);
+    }
+
+    @Override
+    public List<Item> getItemsByRank(String key, Date startDate, long size) {
+        PageRequest pageable = PageRequest.of(0, (int)size);
+        List<ItemJpaEntity> itemJpaEntityList = this.itemRepository.findAllBySortKeyAndStartDate(key, startDate, pageable);
+        return itemJpaEntityList.stream().map(ItemMapper::convertEntityToItem).toList();
     }
 }

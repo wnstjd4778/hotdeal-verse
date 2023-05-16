@@ -39,6 +39,9 @@ public class ItemJpaEntity {
 
     private String imgName;
 
+    @ColumnDefault("0")
+    private long viewCnt;
+
     @ColumnDefault("false")
     private boolean isSend;
 
@@ -48,5 +51,9 @@ public class ItemJpaEntity {
 
     void addComment(CommentJpaEntity commentJpaEntity) {
         this.commentList.add(commentJpaEntity);
+    }
+
+    void addViewCnt() {
+        this.viewCnt += 1;
     }
 }

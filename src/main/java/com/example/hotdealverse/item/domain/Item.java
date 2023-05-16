@@ -29,4 +29,6 @@ public class Item {
     private Date createdAt;
 
     private String imgName;
+
+    private long viewCnt;
 }

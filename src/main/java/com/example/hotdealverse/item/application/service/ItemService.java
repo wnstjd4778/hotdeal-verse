@@ -7,8 +7,11 @@ import com.example.hotdealverse.item.adapter.dto.req.GetItemsReqDto;
 import com.example.hotdealverse.item.adapter.dto.res.GetItemResDto;
 import com.example.hotdealverse.item.mapper.ItemMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -33,5 +36,12 @@ public class ItemService implements ItemUseCase {
     public GetItemResDto getItem(Long itemId) {
         Item item = this.itemPort.getItemById(itemId);
         return ItemMapper.convertItemToGetItemResDto(item);
+    }
+
+    @Override
+    public List<GetItemResDto> getItemsByRank(String key, Date startDate, long size) {
+        List<Item> itemList = this.itemPort.getItemsByRank(key, startDate, size);
+
+        return itemList.stream().map((item) -> ItemMapper.convertItemToGetItemResDto(item)).toList();
     }
 }

@@ -26,4 +26,6 @@ public class GetItemResDto {
     private Date createdAt;
 
     private String imgName;
+
+    private Long viewCnt;
 }
