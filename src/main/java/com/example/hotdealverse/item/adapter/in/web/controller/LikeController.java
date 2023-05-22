@@ -23,7 +23,7 @@ public class LikeController {
 
     @Operation(summary = "게시글 좋아요 등록")
     @Authenticated
-    @PostMapping("/items/{itemId}")
+    @PostMapping("/items/{itemId}/likes")
     public ResponseEntity enrollLike(
             @CurrentUser UserPrincipal userPrincipal,
             @PathVariable("itemId") Long itemId
@@ -34,7 +34,7 @@ public class LikeController {
 
     @Operation(summary = "게시글 좋아요 취소")
     @Authenticated
-    @DeleteMapping("/items/{itemId}")
+    @DeleteMapping("/items/{itemId}/likes")
     public ResponseEntity unenrollLike(
             @CurrentUser UserPrincipal userPrincipal,
             @PathVariable("itemId") Long itemId

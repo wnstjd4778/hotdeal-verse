@@ -16,15 +16,17 @@ public class ErrorResponse {
     private final String message;
 
     public static ResponseEntity<ErrorResponse> toResponseEntity(ErrorCode errorCode) {
+        System.out.println("호출");
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .success(false)
+                .status(errorCode.getHttpStatus().value())
+                .error(errorCode.getHttpStatus().name())
+                .code(errorCode.name())
+                .message(errorCode.getDetail())
+                .build();
+
         return ResponseEntity
                 .status(errorCode.getHttpStatus())
-                .body(ErrorResponse.builder()
-                        .success(false)
-                        .status(errorCode.getHttpStatus().value())
-                        .error(errorCode.getHttpStatus().name())
-                        .code(errorCode.name())
-                        .message(errorCode.getDetail())
-                        .build()
-                );
+                .body(errorResponse);
     }
 }
