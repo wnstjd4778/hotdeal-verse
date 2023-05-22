@@ -25,7 +25,6 @@ public class AlarmService implements AlarmUseCase {
     public void send() {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getForObject("http://localhost:5001/ruliweb/1", String.class);
-
         List<Alarm> alarmList = keywordPort.findAllKeywordsAndItemsNotSent();
 
         this.alarmPort.send(alarmList);
