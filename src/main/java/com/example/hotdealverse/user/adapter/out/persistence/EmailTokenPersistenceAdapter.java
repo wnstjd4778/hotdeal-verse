@@ -2,7 +2,7 @@ package com.example.hotdealverse.user.adapter.out.persistence;
 
 import com.example.hotdealverse.common.exception.CustomException;
 import com.example.hotdealverse.common.exception.ErrorCode;
-import com.example.hotdealverse.user.adapter.in.web.dto.req.PatchEmailReqDto;
+import com.example.hotdealverse.user.adapter.dto.req.PatchEmailReqDto;
 import com.example.hotdealverse.user.application.port.out.EmailTokenPort;
 import com.example.hotdealverse.user.domain.EmailToken;
 import com.example.hotdealverse.user.mapper.EmailTokenMapper;

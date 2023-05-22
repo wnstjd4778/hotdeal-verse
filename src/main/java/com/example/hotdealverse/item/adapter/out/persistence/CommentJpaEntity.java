@@ -1,6 +1,7 @@
 package com.example.hotdealverse.item.adapter.out.persistence;
 
 import com.example.hotdealverse.user.adapter.out.persistence.UserJpaEntity;
+import com.example.hotdealverse.user.adapter.out.persistence.base.BaseTimeEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentJpaEntity {
+public class CommentJpaEntity extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

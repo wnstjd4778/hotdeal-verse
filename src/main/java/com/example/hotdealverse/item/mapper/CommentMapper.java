@@ -13,6 +13,8 @@ public class CommentMapper {
                 .content(commentJpaEntity.getContent())
                 .parent(commentJpaEntity.getParent() ==null? null : convertEntityToComment(commentJpaEntity.getParent()))
                 .user(UserMapper.convertEntityToUser(commentJpaEntity.getUser()))
+                .createdAt(commentJpaEntity.getCreatedAt())
+                .updatedAt(commentJpaEntity.getUpdatedAt())
                 .build();
     }
 

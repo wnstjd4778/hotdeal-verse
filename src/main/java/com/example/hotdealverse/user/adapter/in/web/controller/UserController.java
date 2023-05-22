@@ -4,7 +4,7 @@ import com.example.hotdealverse.common.aop.Authenticated;
 import com.example.hotdealverse.common.aop.CurrentUser;
 import com.example.hotdealverse.common.payload.ApiBaseResponse;
 import com.example.hotdealverse.common.security.jwt.UserPrincipal;
-import com.example.hotdealverse.user.adapter.in.web.dto.req.PatchEmailReqDto;
+import com.example.hotdealverse.user.adapter.dto.req.PatchEmailReqDto;
 import com.example.hotdealverse.user.application.port.in.GetUserQuery;
 import com.example.hotdealverse.user.application.port.in.UserUseCase;
 import com.example.hotdealverse.user.domain.User;

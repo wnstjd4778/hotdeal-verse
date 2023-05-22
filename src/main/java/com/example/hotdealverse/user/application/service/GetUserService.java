@@ -1,6 +1,6 @@
 package com.example.hotdealverse.user.application.service;
 
-import com.example.hotdealverse.user.adapter.in.web.dto.req.PatchEmailReqDto;
+import com.example.hotdealverse.user.adapter.dto.req.PatchEmailReqDto;
 import com.example.hotdealverse.user.application.port.in.GetUserQuery;
 import com.example.hotdealverse.user.application.port.in.UserUseCase;
 import com.example.hotdealverse.user.application.port.out.EmailTokenPort;

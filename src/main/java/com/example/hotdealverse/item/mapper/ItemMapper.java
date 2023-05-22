@@ -1,8 +1,10 @@
 package com.example.hotdealverse.item.mapper;
 
+import com.example.hotdealverse.item.adapter.dto.res.GetCommentResDto;
 import com.example.hotdealverse.item.adapter.dto.res.GetItemResDto;
 import com.example.hotdealverse.item.adapter.out.persistence.ItemJpaEntity;
 import com.example.hotdealverse.item.domain.Item;
+import com.example.hotdealverse.user.adapter.dto.res.GetUserResDto;
 
 public class ItemMapper {
 
@@ -39,7 +41,19 @@ public class ItemMapper {
                 .id(item.getId())
                 .nickname(item.getNickname())
                 .recommendNum((long) item.getLikeList().size())
-                .replyNum((long) item.getCommentList().size())
+                .commentList(item.getCommentList().stream().map((comment ->
+                                GetCommentResDto.builder()
+                                        .id(comment.getId())
+                                        .user(GetUserResDto.builder()
+                                                .name(comment.getUser().getName())
+                                                .id(comment.getUser().getId())
+                                                .build())
+                                        .content(comment.getContent())
+                                        .createdAt(comment.getCreatedAt())
+                                        .updatedAt(comment.getUpdatedAt())
+                                        .build()
+                        )
+                ).toList())
                 .title(item.getTitle())
                 .createdAt(item.getCreatedAt())
                 .href(item.getHref())
@@ -54,7 +68,19 @@ public class ItemMapper {
                 .id(item.getId())
                 .nickname(item.getNickname())
                 .recommendNum((long) item.getLikeList().size())
-                .replyNum((long) item.getCommentList().size())
+                .commentList(item.getCommentList().stream().map((comment ->
+                                GetCommentResDto.builder()
+                                        .id(comment.getId())
+                                        .user(GetUserResDto.builder()
+                                                .name(comment.getUser().getName())
+                                                .id(comment.getUser().getId())
+                                                .build())
+                                        .content(comment.getContent())
+                                        .createdAt(comment.getCreatedAt())
+                                        .updatedAt(comment.getUpdatedAt())
+                                        .build()
+                        )
+                ).toList())
                 .title(item.getTitle())
                 .createdAt(item.getCreatedAt())
                 .href(item.getHref())
