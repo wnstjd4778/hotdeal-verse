@@ -31,6 +31,7 @@ public class ItemJpaEntity {
     private List<LikeJpaEntity> likeList = new ArrayList<>();
 
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    @OrderBy("createdAt DESC")
     private List<CommentJpaEntity> commentList = new ArrayList<>();
 
     private String href;
