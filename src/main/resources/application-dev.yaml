@@ -1,23 +1,23 @@
+# properties:
 server:
-  port: 8080
-
-
+  port: 9787
 
 spring:
 
   ##### mysql ######
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/hotdeal_verse?characterEncoding=UTF-8&serverTimezone=UTC
-    username: root
-    password: ""
+    username: admin
+    password: "WGh0tuca42zgagzfMGYH"
+    url: jdbc:mysql://hotdealverse-dev.cloksitufzqo.ap-northeast-2.rds.amazonaws.com:3306/hotdeal_verse?characterEncoding=UTF-8&serverTimezone=UTC
   jpa:
     # show-sql: true
     hibernate:
       ddl-auto: update
     # properties:
-    #  hibernate:
-    #    format_sql: true
+    # hibernate:
+    #  format_sql: true
+
 
   ##### OAuth2 #####
   security:
@@ -25,8 +25,8 @@ spring:
       client:
         registration:
           kakao:
-            client-id: ebc80626860a242dc871399ffb7e553d
-            redirect-uri: "http://localhost:8080/oauth2/callback/kakao"
+            client-id: b7476de0da29fde52ab0fb353df9961e
+            redirect-uri: "https://api.hotdealverse.shop/oauth2/callback/kakao"
             client-authentication-method: POST
             authorization-grant-type: authorization_code
             scope: profile_nickname, account_email #동의 항목
@@ -38,13 +38,14 @@ spring:
             user-info-uri: https://kapi.kakao.com/v2/user/me
             user-name-attribute: id
 
+
+
   ##### Swagger3 #####
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
 
-
-  #### rabbitmq ####
+    #### rabbitmq ####
   rabbitmq:
     host: localhost
     username: guest
@@ -57,14 +58,15 @@ spring:
       - queue: email
         key: key2
 
+
 jwt:
   accessToken:
-    secret: sssssecret
-    expiredMsc: 1000000000
+    secret: gktelfqjtmfosejazlrkqtdla
+    expiredMsc: 3600000
   refreshToken:
     expiredMsc: 1209600000
 
 frontend:
-  redirectUrl: http://localhost:3000/oauth2/redirect
+  redirectUrl: http://localhost:5173/oauth2/redirect
   email:
-    redirectUrl: http://localhost:3000/email
+    redirectUrl: http://localhost:5173/redirect/email

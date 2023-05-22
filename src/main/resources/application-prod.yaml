@@ -59,14 +59,14 @@ spring:
         key: key2
 
 
-  jwt:
-    accessToken:
-      secret: gktelfqjtmfosejazlrkqtdla
-      expiredMsc: 3600000
-    refreshToken:
-      expiredMsc: 1209600000
+jwt:
+  accessToken:
+    secret: gktelfqjtmfosejazlrkqtdla
+    expiredMsc: 3600000
+  refreshToken:
+    expiredMsc: 1209600000
 
-  frontend:
-    redirectUrl: https://hottdealverse.shop/oauth2/redirect
-    email:
-      redirectUrl: https://hotdealverse.shop/redirect/email
+frontend:
+  redirectUrl: https://hotdealverse.shop/oauth2/redirect
+  email:
+    redirectUrl: https://hotdealverse.shop/redirect/email

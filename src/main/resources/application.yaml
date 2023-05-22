@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: prod
   error:
     include-exception: false
     include-message: always
