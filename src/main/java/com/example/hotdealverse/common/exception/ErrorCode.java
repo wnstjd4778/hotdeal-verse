@@ -19,6 +19,7 @@ public enum ErrorCode {
     TOKEN_NOT_INVALID(HttpStatus.FORBIDDEN, "토큰이 유효하지 않습니다."),
     KEYWORD_NOT_ACCESS(HttpStatus.FORBIDDEN, "해당 키워드에 접근할 수 없습니다."),
     REVIEW_NOT_ACCESS(HttpStatus.FORBIDDEN, "해당 리뷰에 접근할 수 없습니다."),
+    LIKE_NOT_ACCESS(HttpStatus.FORBIDDEN, "해당 좋아요에 접근할 수 없습니다."),
 
     // 404 NOT_FOUND
     COMMENT_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 댓글을 찾을 수 없습니다."),

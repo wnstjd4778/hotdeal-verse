@@ -19,15 +19,20 @@ public class LikePersistenceAdapter implements LikePort {
     @Override
     public void enrollLike(Long userId, Long itemId) {
 
-        UserJpaEntity user = userRepository.findById(userId).orElseThrow(
+        UserJpaEntity userJpaEntity = userRepository.findById(userId).orElseThrow(
                 () -> new CustomException(ErrorCode.USER_NOT_FOUND)
         );
 
         ItemJpaEntity itemJpaEntity = itemRepository.findById(itemId).orElseThrow(
                 () -> new CustomException(ErrorCode.ITEM_NOT_FOUND)
         );
+
+        if (checkIfLikedByItemId(itemJpaEntity, userJpaEntity)) {
+            throw new CustomException(ErrorCode.LIKE_NOT_ACCESS);
+        }
+
         LikeJpaEntity likeJpaEntity = LikeJpaEntity.builder()
-                .user(user)
+                .user(userJpaEntity)
                 .item(itemJpaEntity)
                 .build();
         likeRepository.save(likeJpaEntity);
@@ -48,5 +53,12 @@ public class LikePersistenceAdapter implements LikePort {
         );
 
         likeRepository.deleteByUserAndItem(user, itemJpaEntity);
+    }
+
+    public boolean checkIfLikedByItemId(ItemJpaEntity itemJpaEntity, UserJpaEntity userJpaEntity) {
+
+        boolean check = likeRepository.existsByItemAndUser(itemJpaEntity, userJpaEntity);
+
+        return check;
     }
 }

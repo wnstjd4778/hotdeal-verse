@@ -43,8 +43,24 @@ public class ItemMapper {
                 .title(item.getTitle())
                 .createdAt(item.getCreatedAt())
                 .href(item.getHref())
+                .check(false)
                 .imgName(item.getImgName())
                 .viewCnt(item.getViewCnt())
+                .build();
+    }
+
+    public static GetItemResDto convertItemToGetItemResDtoWithUserId(Item item, Long userId) {
+        return GetItemResDto.builder()
+                .id(item.getId())
+                .nickname(item.getNickname())
+                .recommendNum((long) item.getLikeList().size())
+                .replyNum((long) item.getCommentList().size())
+                .title(item.getTitle())
+                .createdAt(item.getCreatedAt())
+                .href(item.getHref())
+                .imgName(item.getImgName())
+                .viewCnt(item.getViewCnt())
+                .check(item.getLikeList().stream().anyMatch(like -> like.getUser().getId() == userId))
                 .build();
     }
 }

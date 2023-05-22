@@ -1,16 +1,15 @@
 package com.example.hotdealverse.item.application.service;
 
+import com.example.hotdealverse.common.security.jwt.UserPrincipal;
+import com.example.hotdealverse.item.adapter.dto.req.GetItemsReqDto;
+import com.example.hotdealverse.item.adapter.dto.res.GetItemResDto;
 import com.example.hotdealverse.item.application.port.in.ItemUseCase;
 import com.example.hotdealverse.item.application.port.out.ItemPort;
 import com.example.hotdealverse.item.domain.Item;
-import com.example.hotdealverse.item.adapter.dto.req.GetItemsReqDto;
-import com.example.hotdealverse.item.adapter.dto.res.GetItemResDto;
 import com.example.hotdealverse.item.mapper.ItemMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.util.Date;
 import java.util.List;
 
@@ -21,10 +20,22 @@ public class ItemService implements ItemUseCase {
     private final ItemPort itemPort;
 
     @Override
-    public List<GetItemResDto> getItems(GetItemsReqDto getItemsReqDto) {
+    public List<GetItemResDto> getItems(GetItemsReqDto getItemsReqDto, UserPrincipal userPrincipal) {
         List<Item> itemList = this.itemPort.getItems(getItemsReqDto);
+        List<GetItemResDto> getItemResDtoList;
 
-        return itemList.stream().map((item) -> ItemMapper.convertItemToGetItemResDto(item)).toList();
+        if (userPrincipal != null) {
+
+            getItemResDtoList = itemList.stream().map((item) ->
+                    ItemMapper.convertItemToGetItemResDtoWithUserId(item, userPrincipal.getId())
+            ).toList();
+
+        } else {
+
+            getItemResDtoList = itemList.stream().map((item) -> ItemMapper.convertItemToGetItemResDto(item)).toList();
+
+        }
+        return getItemResDtoList;
     }
 
     @Override
@@ -33,9 +44,20 @@ public class ItemService implements ItemUseCase {
     }
 
     @Override
-    public GetItemResDto getItem(Long itemId) {
+    public GetItemResDto getItem(Long itemId, UserPrincipal userPrincipal) {
         Item item = this.itemPort.getItemById(itemId);
-        return ItemMapper.convertItemToGetItemResDto(item);
+        GetItemResDto getItemResDtoList;
+        if (userPrincipal != null) {
+
+            getItemResDtoList = ItemMapper.convertItemToGetItemResDtoWithUserId(item, userPrincipal.getId());
+
+        } else {
+
+            getItemResDtoList = ItemMapper.convertItemToGetItemResDto(item);
+
+        }
+
+        return getItemResDtoList;
     }
 
     @Override

@@ -1,10 +1,12 @@
 package com.example.hotdealverse.item.adapter.in.web.controller;
 
+import com.example.hotdealverse.common.aop.CurrentUser;
 import com.example.hotdealverse.common.payload.ApiBaseResponse;
 import com.example.hotdealverse.common.payload.ApiTotalBaseResponse;
-import com.example.hotdealverse.item.application.port.in.ItemUseCase;
+import com.example.hotdealverse.common.security.jwt.UserPrincipal;
 import com.example.hotdealverse.item.adapter.dto.req.GetItemsReqDto;
 import com.example.hotdealverse.item.adapter.dto.res.GetItemResDto;
+import com.example.hotdealverse.item.application.port.in.ItemUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,9 +28,11 @@ public class ItemController {
 
     @GetMapping("/items")
     public ResponseEntity<ApiBaseResponse> getItems(
-            GetItemsReqDto getItemsReqDto
+            GetItemsReqDto getItemsReqDto,
+            @CurrentUser UserPrincipal userPrincipal
     ) {
-        List<GetItemResDto> getItemResDtoList = this.itemUseCase.getItems(getItemsReqDto);
+
+        List<GetItemResDto> getItemResDtoList = this.itemUseCase.getItems(getItemsReqDto, userPrincipal);
         Long total = this.itemUseCase.getTotalItemsCnt(getItemsReqDto);
         ApiTotalBaseResponse apiTotalBaseResponse = new ApiTotalBaseResponse(getItemResDtoList, total);
         return new ResponseEntity<>(apiTotalBaseResponse, HttpStatus.OK);
@@ -36,9 +40,10 @@ public class ItemController {
 
     @GetMapping("/items/{itemId}")
     public ResponseEntity<ApiBaseResponse> getItem(
-            @PathVariable("itemId") Long itemId
+            @PathVariable("itemId") Long itemId,
+            @CurrentUser UserPrincipal userPrincipal
     ) {
-        GetItemResDto getItemResDto = this.itemUseCase.getItem(itemId);
+        GetItemResDto getItemResDto = this.itemUseCase.getItem(itemId, userPrincipal);
         ApiBaseResponse apiBaseResponse = new ApiBaseResponse(getItemResDto);
         return new ResponseEntity<>(apiBaseResponse, HttpStatus.OK);
     }
@@ -48,7 +53,7 @@ public class ItemController {
             @RequestParam("startDate") String date,
             @RequestParam("key") String key,
             @RequestParam("size") int size
-            ) throws ParseException {
+    ) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date startDate = dateFormat.parse(date);
         System.out.println(startDate);

@@ -27,5 +27,7 @@ public class GetItemResDto {
 
     private String imgName;
 
+    private boolean check;
+
     private Long viewCnt;
 }

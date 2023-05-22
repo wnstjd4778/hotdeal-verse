@@ -9,6 +9,6 @@ public interface CommentRepository extends JpaRepository<CommentJpaEntity, Long>
 
     @Modifying
     @Transactional
-    @Query("UPDATE CommentJpaEntity c SET c.content = :content WHERE c.id = :userId ")
+    @Query("UPDATE CommentJpaEntity c SET c.content = :content WHERE c.user.id = :userId ")
     void patchComment(Long userId, String content);
 }
