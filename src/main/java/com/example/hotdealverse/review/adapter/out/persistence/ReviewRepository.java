@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ReviewRepository extends JpaRepository<ReviewJpaEntity, Long> {
 
-    Page<ReviewJpaEntity> findAll(Pageable pageable);
+    Page<ReviewJpaEntity> findAllOrderByCreatedAtDesc(Pageable pageable);
 
-    Page<ReviewJpaEntity> findAllByItem(Long itemId, Pageable pageable);
+    Page<ReviewJpaEntity> findAllByItemOrderByCreatedAtDesc(Long itemId, Pageable pageable);
 
     long count();
 

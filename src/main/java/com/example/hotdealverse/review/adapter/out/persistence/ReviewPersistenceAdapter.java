@@ -33,9 +33,9 @@ public class ReviewPersistenceAdapter implements ReviewPort {
         List<ReviewJpaEntity> reviewJpaEntityList;
 
         if(getReviewsReqDto.getItemId() == null) {
-            reviewJpaEntityList  = this.reviewRepository.findAll(pageable).stream().toList();
+            reviewJpaEntityList  = this.reviewRepository.findAllOrderByCreatedAtDesc(pageable).stream().toList();
         } else {
-            reviewJpaEntityList = this.reviewRepository.findAllByItem(getReviewsReqDto.getItemId(), pageable).stream().toList();
+            reviewJpaEntityList = this.reviewRepository.findAllByItemOrderByCreatedAtDesc(getReviewsReqDto.getItemId(), pageable).stream().toList();
         }
 
         return reviewJpaEntityList.stream().map(review -> ReviewMapper.convertEntityToReview(review)).toList();
