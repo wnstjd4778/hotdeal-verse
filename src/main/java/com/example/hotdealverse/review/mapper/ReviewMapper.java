@@ -15,6 +15,8 @@ public class ReviewMapper {
                 .content(reviewJpaEntity.getContent())
                 .user(UserMapper.convertEntityToUser(reviewJpaEntity.getUser()))
                 .item(ItemMapper.convertEntityToItem(reviewJpaEntity.getItem()))
+                .createdAt(reviewJpaEntity.getCreatedAt())
+                .updatedAt(reviewJpaEntity.getUpdatedAt())
                 .build();
     }
 
@@ -24,6 +26,8 @@ public class ReviewMapper {
                 .content(review.getContent())
                 .item(ItemMapper.convertItemToGetItemResDto(review.getItem()))
                 .name(review.getUser().getName())
+                .createdAt(review.getCreatedAt())
+                .updatedAt(review.getUpdatedAt())
                 .build();
     }
 }
