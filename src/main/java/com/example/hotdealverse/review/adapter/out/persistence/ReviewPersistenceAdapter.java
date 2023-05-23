@@ -33,9 +33,14 @@ public class ReviewPersistenceAdapter implements ReviewPort {
         List<ReviewJpaEntity> reviewJpaEntityList;
 
         if(getReviewsReqDto.getItemId() == null) {
-            reviewJpaEntityList  = this.reviewRepository.findAllOrderByCreatedAtDesc(pageable).stream().toList();
+            reviewJpaEntityList  = this.reviewRepository.findAll(pageable).stream().toList();
         } else {
-            reviewJpaEntityList = this.reviewRepository.findAllByItemOrderByCreatedAtDesc(getReviewsReqDto.getItemId(), pageable).stream().toList();
+
+            ItemJpaEntity itemJpaEntity = this.itemRepository.findById(getReviewsReqDto.getItemId()).orElseThrow(
+                    () -> new CustomException(ErrorCode.ITEM_NOT_FOUND)
+            );
+
+            reviewJpaEntityList = this.reviewRepository.findAllByItem(itemJpaEntity, pageable).stream().toList();
         }
 
         return reviewJpaEntityList.stream().map(review -> ReviewMapper.convertEntityToReview(review)).toList();
@@ -47,7 +52,12 @@ public class ReviewPersistenceAdapter implements ReviewPort {
         if(getReviewsReqDto.getItemId() == null) {
             return this.reviewRepository.count();
         } else {
-            return this.reviewRepository.countAllByItem(getReviewsReqDto.getItemId());
+
+            ItemJpaEntity itemJpaEntity = this.itemRepository.findById(getReviewsReqDto.getItemId()).orElseThrow(
+                    () -> new CustomException(ErrorCode.ITEM_NOT_FOUND)
+            );
+
+            return this.reviewRepository.countAllByItem(itemJpaEntity);
         }
     }
 
